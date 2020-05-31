@@ -1,0 +1,6 @@
+/build
+/libs/
+/src/test/
+/src/androidTest/
+/src/main/AndroidManifest.xml
+/src/main/res/
