@@ -1,1 +1,1 @@
-# VariousExtensions
+# Various extensions for java and android
