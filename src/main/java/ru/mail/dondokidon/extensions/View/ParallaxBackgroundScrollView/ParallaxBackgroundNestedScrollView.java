@@ -14,7 +14,7 @@ import android.util.SparseArray;
 import android.view.View;
 
 /**
- * {@link NestedScrollView} which allows to set several background {@link Bitmap} and move it
+ * {@link NestedScrollView} which allows to set several background {@link Bitmap} and move them
  * with every change of scroll positions to achieve parallax effect.
  */
 public abstract class ParallaxBackgroundNestedScrollView extends NestedScrollView {

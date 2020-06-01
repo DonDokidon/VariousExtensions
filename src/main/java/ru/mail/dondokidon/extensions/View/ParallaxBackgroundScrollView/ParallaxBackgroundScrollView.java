@@ -17,7 +17,7 @@ import androidx.core.widget.NestedScrollView;
 
 
 /**
- * {@link ScrollView} which allows to set several background {@link Bitmap} and move it
+ * {@link ScrollView} which allows to set several background {@link Bitmap} and move them
  * with every change of scroll positions to achieve parallax effect.
  */
 public abstract class ParallaxBackgroundScrollView extends ScrollView {

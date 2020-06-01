@@ -1,6 +1,7 @@
 package ru.mail.dondokidon.extensions;
 
-import androidx.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -67,7 +68,7 @@ public class MultiSelectHandler <mClass>{
      *
      * @param o Object to put
      */
-    public void selectItem(@NonNull mClass o){
+    public void selectItem(@NotNull mClass o){
         if (SelectionsList.isEmpty())
             triggerListenersStart();
         else if (SelectionsList.contains(o))
@@ -81,7 +82,7 @@ public class MultiSelectHandler <mClass>{
      *
      * @param o Object to remove
      */
-    public void unselectItem(@NonNull mClass o){
+    public void unselectItem(@NotNull mClass o){
         SelectionsList.remove(o);
         triggerListenersItemDeselected(o);
         if (SelectionsList.isEmpty())

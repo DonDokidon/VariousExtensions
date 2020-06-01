@@ -1,7 +1,7 @@
 package ru.mail.dondokidon.extensions;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class FilterableArrayList <mClass>extends ArrayList<mClass> {
     /**
      * @see ArrayList#ArrayList(Collection)
      */
-    public FilterableArrayList(@NonNull Collection<? extends mClass> c) {
+    public FilterableArrayList(@NotNull Collection<? extends mClass> c) {
         super(c);
         filterContent();
     }
@@ -82,7 +82,7 @@ public class FilterableArrayList <mClass>extends ArrayList<mClass> {
         return FilterResult.contains(o);
     }
 
-    @NonNull
+    @NotNull
     @Override
     public Object clone() {
         FilterableArrayList<mClass> clone = new FilterableArrayList<>(this);
@@ -197,7 +197,7 @@ public class FilterableArrayList <mClass>extends ArrayList<mClass> {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public boolean addAll(@NonNull Collection<? extends mClass> c) {
+    public boolean addAll(@NotNull Collection<? extends mClass> c) {
         int Size = size();
         boolean ret = super.addAll(c);
         int i = 0;
@@ -221,7 +221,7 @@ public class FilterableArrayList <mClass>extends ArrayList<mClass> {
      * @see ArrayList#addAll(int, Collection)
      */
     @Override
-    public boolean addAll(int index, @NonNull Collection<? extends mClass> c) {
+    public boolean addAll(int index, @NotNull Collection<? extends mClass> c) {
         boolean ret = super.addAll(index, c);
         for (DataHolder Item : FilterResult)
             if (Item.position >= index)
@@ -269,7 +269,7 @@ public class FilterableArrayList <mClass>extends ArrayList<mClass> {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public boolean removeAll(@NonNull Collection c) {
+    public boolean removeAll(@NotNull Collection c) {
         int i = 0;
         for (mClass o : ((Collection<mClass>) c)){
             int indexOf = indexOf(o) - i;
@@ -287,7 +287,7 @@ public class FilterableArrayList <mClass>extends ArrayList<mClass> {
      * @see ArrayList#retainAll(Collection)
      */
     @Override
-    public boolean retainAll(@NonNull Collection c) {
+    public boolean retainAll(@NotNull Collection c) {
         int i = 0;
         for (mClass o : this){
             if (!c.contains(o)){
@@ -344,7 +344,7 @@ public class FilterableArrayList <mClass>extends ArrayList<mClass> {
     /**
      * @see ArrayList#subList(int, int)
      */
-    @NonNull
+    @NotNull
     @Override
     public List<mClass> subList(int fromIndex, int toIndex) {
         return super.subList(fromIndex, toIndex);

@@ -12,7 +12,7 @@ import android.util.SparseArray;
 import java.util.ArrayList;
 
 /**
- * Object to make your Object work with large data set. Use it to provide your Object
+ * Class to make your Object work with large data set. Use it to provide your Object
  * functional to change according current adapter position.
  *
  * <h3>Glossary of terms:</h3>
