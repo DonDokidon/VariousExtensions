@@ -5,6 +5,7 @@ import android.database.DataSetObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RawRes;
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
  * @param <IH> Class that extends {@link PagerAdapterHandler.ItemHolder}
  */
 public class PagerAdapterHandler<T extends PagerAdapterHandler.Target,
-        IH extends PagerAdapterHandler.ItemHolder> {
+        IH extends PagerAdapterHandler.ItemHolder<?>> {
     private static final String  TAG = "AdapterHandler";
     /**
      * Can be returned by {@link Adapter#getItemPosition(ItemHolder)} to notify that ItemHolder
@@ -59,7 +60,7 @@ public class PagerAdapterHandler<T extends PagerAdapterHandler.Target,
      * @param <IH> Class that extends {@link PagerAdapterHandler.ItemHolder}
      * @return AdapterHandler instance, attached to target object
      */
-    public static <T extends PagerAdapterHandler.Target, IH extends ItemHolder> PagerAdapterHandler<T, IH> attachTo(
+    public static <T extends PagerAdapterHandler.Target, IH extends ItemHolder<?>> PagerAdapterHandler<T, IH> attachTo(
             @NonNull T target){
         PagerAdapterHandler<T, IH> instance = new PagerAdapterHandler<>();
         instance.Target = target;
@@ -75,7 +76,7 @@ public class PagerAdapterHandler<T extends PagerAdapterHandler.Target,
      * @param <IH> Class that extends {@link PagerAdapterHandler.ItemHolder}
      * @return {@link PagerAdapterHandler} instance, attached to target Object
      */
-    public static <T extends PagerAdapterHandler.Target, IH extends ItemHolder> PagerAdapterHandler<T, IH> attachTo(
+    public static <T extends PagerAdapterHandler.Target, IH extends ItemHolder<?>> PagerAdapterHandler<T, IH> attachTo(
             @NonNull T target, boolean isCycled){
         PagerAdapterHandler<T, IH> ret = attachTo(target);
         ret.setCycled(isCycled);
@@ -110,6 +111,7 @@ public class PagerAdapterHandler<T extends PagerAdapterHandler.Target,
             mAdapter.onDetachedFromTarget(Target);
             InfoHolder.clear();
         }
+        @SuppressWarnings("rawtypes")
         Adapter oldAdapter = mAdapter;
         mAdapter = newAdapter;
         if (newAdapter == null){
@@ -318,6 +320,7 @@ public class PagerAdapterHandler<T extends PagerAdapterHandler.Target,
     private void invalidateInfo(){
         if (mAdapter == null || mAdapter.getCount() == 0)
             return;
+        @SuppressWarnings("rawtypes")
         ItemHolder[] InfoHolderContent = new ItemHolder[InfoHolder.size()];
         int[] InfoHolderContentPositions = new int[InfoHolder.size()];
         mAdapter.startUpdate(Target);
@@ -522,6 +525,7 @@ public class PagerAdapterHandler<T extends PagerAdapterHandler.Target,
          * @param isAnimated Is change should be animated.
          */
         void onPositionChanged(int oldPosition, int newPosition, boolean isAnimated);
+        @SuppressWarnings("rawtypes")
         void onAdapterChanged(Adapter oldAdapter, Adapter newAdapter);
         void onDataSetChanged();
     }
@@ -533,7 +537,7 @@ public class PagerAdapterHandler<T extends PagerAdapterHandler.Target,
      * @param <IH> Class that extends {@link PagerAdapterHandler.ItemHolder}
      */
     public static abstract class Adapter<T extends PagerAdapterHandler.Target,
-            IH extends ItemHolder> {
+            IH extends ItemHolder<?>> {
 
         private DataSetObservable mObservable = new DataSetObservable();
 
